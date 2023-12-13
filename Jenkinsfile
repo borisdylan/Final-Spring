@@ -1,18 +1,30 @@
 pipeline {
     agent any
-    stages{
-            stage('Checkout GIT'){
-                steps{
-
-                    echo 'Pulling...';
-                    git branch: 'main',
-                    url : 'https://github.com/borisdylan/5WIN-G1-EventsProject.git'
+    triggers {
+        // Trigger the pipeline when changes are pushed to the Git repository
+        scm '*/main'
+    }
+    stages {
+        stage('Checkout GIT') {
+            steps {
+                echo 'Pulling...'
+                // Fetch the code from the specified Git repository
+                git branch: 'master', url: 'https://github.com/borisdylan/Final-Spring.git'
+            }
+        }
+        stage('Display System Date') {
+            steps {
+                // Display the current system date
+                script {
+                    def currentDate = sh(script: 'date', returnStdout: true).trim()
+                    echo "Current date: ${currentDate}"
                 }
             }
-            stage('Testing maven'){
-                steps {
-                    sh """mvn -version"""
-                }
+        }
+        stage('Testing maven') {
+            steps {
+                sh 'mvn -version'
             }
+        }
     }
 }
