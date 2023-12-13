@@ -17,9 +17,6 @@ pipeline {
                 }
             }
         }
-        environment {
-            PATH = "$PATH:/usr/share/maven/"
-        }
 
         stage('MVN CLEAN') {
             steps {
