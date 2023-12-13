@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo 'Pulling...'
                 // Fetch the code from the specified Git repository
-                git branch: 'main', url: 'https://github.com/borisdylan/5WIN-G1-EventsProject.git'
+                git branch: 'master', url: 'https://github.com/borisdylan/Final-Spring.git'
             }
         }
         stage('Display System Date') {
