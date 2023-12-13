@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    triggers {
-        // Trigger the pipeline when changes are pushed to the Git repository
-        scm '*/main'
-    }
     stages {
         stage('Checkout GIT') {
             steps {
