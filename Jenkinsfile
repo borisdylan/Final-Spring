@@ -1,8 +1,9 @@
 pipeline {
     agent any
     tools {
-        jdk 'JAVA_HOME'
         maven 'M2_HOME'
+        jdk 'JAVA_HOME'
+        
     }
     stages {
         stage('Checkout GIT') {
@@ -25,20 +26,15 @@ pipeline {
         stage('MVN CLEAN') {
             steps {
                 // Run 'mvn clean' command
-                sh 'mvn clean'
+                sh 'mvn clean install -DskipTests'
             }
         }
-        stage('MVN COMPILE') {
+        stage('MVN SONARQUBE') {
             steps {
                 // Run 'mvn compile' command
-                sh 'mvn compile'
+                sh 'mvn sonar:sonar -Dsonar.login=sonar'
             }
         }
-        stage('Testing maven') {
-            steps {
-                // Display Maven version
-                sh 'mvn -version'
-            }
-        }
+
     }
 }
