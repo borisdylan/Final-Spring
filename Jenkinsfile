@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         jdk 'JAVA_HOME'
+        maven '/usr/share/maven/bin/mvn'
     }
     stages {
         stage('Checkout GIT') {
