@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo 'Pulling...'
                 // Fetch the code from the specified Git repository
-                git branch: 'master', url: 'https://github.com/borisdylan/Final-Spring.git'
+                git branch: 'main', url: 'https://github.com/borisdylan/5WIN-G1-EventsProject.git'
             }
         }
         stage('Display System Date') {
@@ -21,8 +21,21 @@ pipeline {
                 }
             }
         }
+        stage('MVN CLEAN') {
+            steps {
+                // Run 'mvn clean' command
+                sh 'mvn clean'
+            }
+        }
+        stage('MVN COMPILE') {
+            steps {
+                // Run 'mvn compile' command
+                sh 'mvn compile'
+            }
+        }
         stage('Testing maven') {
             steps {
+                // Display Maven version
                 sh 'mvn -version'
             }
         }
